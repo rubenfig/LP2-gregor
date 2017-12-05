@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_libros"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Libros" />
+        <item
+            android:id="@+id/nav_perfil"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Perfil" />
+        <item
+            android:id="@+id/nav_reserva"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Reservar" />
+
+    </group>
+
+
+
+</menu>
