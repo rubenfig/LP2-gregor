@@ -1,5 +1,8 @@
 package com.example.ruben.lp2;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Embedded;
+
 import java.util.Date;
 
 /**
@@ -9,8 +12,11 @@ import java.util.Date;
 public class DetallePrestamo {
 
     int codPrestamo;
+    @Embedded
     Libro producto;
+    @ColumnInfo(name = "fecha_entrega")
     Date fechaEntrega;
+    @ColumnInfo(name = "dias")
     int cantDias;
 
 

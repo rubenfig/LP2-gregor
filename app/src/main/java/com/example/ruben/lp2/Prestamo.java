@@ -1,16 +1,24 @@
 package com.example.ruben.lp2;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Embedded;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
 import java.util.Date;
 
 /**
  * Created by ruben on 05/12/17.
  */
-
+@Entity
 public class Prestamo {
-
+    @PrimaryKey(autoGenerate = true)
     int idPrestamo;
+    @Embedded
     Alumno alumno;
+    @ColumnInfo(name = "fecha")
     Date fecha;
+    @Embedded
     DetallePrestamo detalle;
 
     public Prestamo(int idPrestamo, Alumno alumno, Date fecha, DetallePrestamo detalle) {

@@ -35,6 +35,12 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        ListFragment listFragment = ListFragment.newInstance(1);
+
+
+        // Add the fragment to the 'fragment_form' FrameLayout
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.content, listFragment).addToBackStack(null).commit();
     }
 
     @Override
@@ -84,12 +90,12 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.content, listFragment).addToBackStack(null).commit();
         } else if (id == R.id.nav_perfil) {
 
-            FragmentPerfil listFragment = FragmentPerfil.newInstance("param", "param");
+            FragmentPerfil perfilFragment = FragmentPerfil.newInstance("param", "param");
 
 
             // Add the fragment to the 'fragment_form' FrameLayout
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.content, listFragment).addToBackStack(null).commit();
+                    .replace(R.id.content, perfilFragment).addToBackStack(null).commit();
 
         }
 
@@ -103,6 +109,9 @@ public class MainActivity extends AppCompatActivity
         ReservaDialogFragment dialog = new ReservaDialogFragment();
         Bundle args = new Bundle();
         args.putInt("dias", item.getDisponibilidad());
+        args.putInt("id", item.getIsbnLibro());
+        args.putString("descripcion", item.getDescripcion());
+        args.putInt("disponibilidad", item.getDisponibilidad());
         dialog.setArguments(args);
         dialog.show(getFragmentManager(), "tag");
 

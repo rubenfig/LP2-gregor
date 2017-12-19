@@ -57,6 +57,12 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?attr/textAppearanceListItem" />
 
+            <TextView
+                android:id="@+id/list_disponibilidad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceListItem" />
+
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 

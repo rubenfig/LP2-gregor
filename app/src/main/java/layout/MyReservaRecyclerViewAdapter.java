@@ -6,24 +6,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.ruben.lp2.Libro;
+import com.example.ruben.lp2.Prestamo;
 import com.example.ruben.lp2.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link Libro} and makes a call to the
- * specified {@link ListFragment.OnListFragmentInteractionListener}.
+ * {@link RecyclerView.Adapter} that can display a {@link Prestamo} and makes a call to the
+ * specified {@link ListPrestamoFragment.OnListReservaFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyLibroRecyclerViewAdapter extends RecyclerView.Adapter<MyLibroRecyclerViewAdapter.ViewHolder> {
+public class MyReservaRecyclerViewAdapter extends RecyclerView.Adapter<MyReservaRecyclerViewAdapter.ViewHolder> {
 
-    private List<Libro> mValues;
-    private final List<Libro> todos;
-    private final ListFragment.OnListFragmentInteractionListener mListener;
+    private List<Prestamo> mValues;
+    private final List<Prestamo> todos;
+    private final ListPrestamoFragment.OnListReservaFragmentInteractionListener mListener;
 
-    public MyLibroRecyclerViewAdapter(List<Libro> items, ListFragment.OnListFragmentInteractionListener listener) {
+    public MyReservaRecyclerViewAdapter(List<Prestamo> items, ListPrestamoFragment.OnListReservaFragmentInteractionListener listener) {
         mValues = items;
         todos = new ArrayList<>(items);
         mListener = listener;
@@ -39,22 +39,9 @@ public class MyLibroRecyclerViewAdapter extends RecyclerView.Adapter<MyLibroRecy
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.nombreView.setText("ID: "+ mValues.get(position).getIsbnLibro());
-        holder.descripcionView.setText("Descripción: "+ mValues.get(position).getDescripcion());
-        holder.disponibilidadView.setText("Disponibilidad: "+ mValues.get(position).getDisponibilidad());
-
-
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
-                }
-            }
-        });
+        holder.nombreView.setText("ID: "+ mValues.get(position).getIdPrestamo());
+        holder.descripcionView.setText("Fecha: "+ mValues.get(position).getFecha());
+        holder.disponibilidadView.setText("Dias de prestamo: "+ mValues.get(position).getDetalle().getCantDias());
     }
 
     @Override
@@ -67,7 +54,7 @@ public class MyLibroRecyclerViewAdapter extends RecyclerView.Adapter<MyLibroRecy
         public final TextView nombreView;
         public final TextView descripcionView;
         public final TextView disponibilidadView;
-        public Libro mItem;
+        public Prestamo mItem;
 
         public ViewHolder(View view) {
             super(view);
@@ -84,7 +71,7 @@ public class MyLibroRecyclerViewAdapter extends RecyclerView.Adapter<MyLibroRecy
     }
 
 
-    public void setFilter(List<Libro> usuarios) {
+    public void setFilter(List<Prestamo> usuarios) {
 
                 mValues.clear();
                 mValues.addAll(usuarios);

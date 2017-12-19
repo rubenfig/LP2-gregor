@@ -10,6 +10,11 @@ public class LibroDao {
     private ArrayList<Libro> libros;
 
     public LibroDao() {
+        cargarLibros();
+
+    }
+
+    private void cargarLibros(){
         libros = new ArrayList<>();
         libros.add(new Libro(1,"Libro 1", 5));
         libros.add(new Libro(2,"Libro 2", 5));
@@ -23,7 +28,6 @@ public class LibroDao {
         libros.add(new Libro(1110,"Libro 10", 5));
         libros.add(new Libro(11122,"Libro 112", 5));
         libros.add(new Libro(113,"Libro 113", 5));
-
     }
 
     public ArrayList<Libro> findAll(){
@@ -33,6 +37,7 @@ public class LibroDao {
 
     public ArrayList<Libro> getByFilter(String query) {
         ArrayList<Libro> libros2 = new ArrayList<>();
+        cargarLibros();
         for (int i=0;i< this.libros.size();i++){
             if (this.libros.get(i).descripcion.contains(query)){
                 libros2.add(this.libros.get(i));
