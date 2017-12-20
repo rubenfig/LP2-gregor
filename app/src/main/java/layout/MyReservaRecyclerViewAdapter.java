@@ -32,16 +32,17 @@ public class MyReservaRecyclerViewAdapter extends RecyclerView.Adapter<MyReserva
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_libro, parent, false);
+                .inflate(R.layout.fragment_reserva, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.nombreView.setText("ID: "+ mValues.get(position).getIdPrestamo());
-        holder.descripcionView.setText("Fecha: "+ mValues.get(position).getFecha());
-        holder.disponibilidadView.setText("Dias de prestamo: "+ mValues.get(position).getDetalle().getCantDias());
+        holder.idView.setText("ID: "+ mValues.get(position).getIdPrestamo());
+        holder.fechaView.setText("Fecha: "+ mValues.get(position).getFecha());
+        holder.fechaEntregaView.setText("Fecha de entrega: "+ mValues.get(position).getDetalle().getFechaEntrega());
+        holder.libroView.setText("Libro: "+ mValues.get(position).getDetalle().getProducto().getDescripcion());
     }
 
     @Override
@@ -51,22 +52,24 @@ public class MyReservaRecyclerViewAdapter extends RecyclerView.Adapter<MyReserva
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView nombreView;
-        public final TextView descripcionView;
-        public final TextView disponibilidadView;
+        public final TextView idView;
+        public final TextView fechaView;
+        public final TextView fechaEntregaView;
+        public final TextView libroView;
         public Prestamo mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            nombreView = (TextView) view.findViewById(R.id.list_nombre);
-            descripcionView = (TextView) view.findViewById(R.id.list_descripcion);
-            disponibilidadView = (TextView) view.findViewById(R.id.list_disponibilidad);
+            idView = (TextView) view.findViewById(R.id.list_id);
+            fechaView = (TextView) view.findViewById(R.id.list_fecha);
+            fechaEntregaView = (TextView) view.findViewById(R.id.list_fecha_entrega);
+            libroView = (TextView) view.findViewById(R.id.list_libro);
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + nombreView.getText() + "'";
+            return super.toString() + " '" + idView.getText() + "'";
         }
     }
 

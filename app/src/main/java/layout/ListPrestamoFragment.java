@@ -1,7 +1,6 @@
 package layout;
 
 import android.app.SearchManager;
-import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,7 +14,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.ruben.lp2.AppDatabase;
+import com.example.ruben.lp2.MainActivity;
 import com.example.ruben.lp2.Prestamo;
 import com.example.ruben.lp2.PrestamosDao;
 import com.example.ruben.lp2.R;
@@ -109,10 +108,9 @@ public class ListPrestamoFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_libros_list, container, false);
-        AppDatabase db = Room.databaseBuilder(getContext().getApplicationContext(),
-                AppDatabase.class, "lp2").build();
-        this.dao = db.prestamosDao();
+        View view = inflater.inflate(R.layout.fragment_reserva_list, container, false);
+
+        this.dao = ((MainActivity) getActivity()).getPrestamosDao();
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();

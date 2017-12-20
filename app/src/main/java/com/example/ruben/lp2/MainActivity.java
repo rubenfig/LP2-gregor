@@ -11,12 +11,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import layout.FragmentPerfil;
+import layout.FragmentReserva;
 import layout.ListFragment;
-import layout.ReservaDialogFragment;
+import layout.ListPrestamoFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener , ListFragment.OnListFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener , ListFragment.OnListFragmentInteractionListener,
+ListPrestamoFragment.OnListReservaFragmentInteractionListener{
+    PrestamosDao prestamosDao = new PrestamosDao();
 
+    public PrestamosDao getPrestamosDao () {
+        return this.prestamosDao;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +86,12 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_reserva) {
             // Handle the camera action
+            ListPrestamoFragment listPrestamoFragment = ListPrestamoFragment.newInstance(1);
+
+
+            // Add the fragment to the 'fragment_form' FrameLayout
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content, listPrestamoFragment).addToBackStack(null).commit();
         } else if (id == R.id.nav_libros) {
 
             ListFragment listFragment = ListFragment.newInstance(1);
@@ -106,14 +118,18 @@ public class MainActivity extends AppCompatActivity
 
     public void onListFragmentInteraction(Libro item){
 // Create a new Fragment to be placed in the activity layout
-        ReservaDialogFragment dialog = new ReservaDialogFragment();
-        Bundle args = new Bundle();
-        args.putInt("dias", item.getDisponibilidad());
-        args.putInt("id", item.getIsbnLibro());
-        args.putString("descripcion", item.getDescripcion());
-        args.putInt("disponibilidad", item.getDisponibilidad());
-        dialog.setArguments(args);
-        dialog.show(getFragmentManager(), "tag");
+        FragmentReserva reservaFragment = FragmentReserva.newInstance(item.getIsbnLibro(), item.getDescripcion(),item.getDisponibilidad());
+
+
+        // Add the fragment to the 'fragment_form' FrameLayout
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.content, reservaFragment).addToBackStack(null).commit();
+// set Fragmentclass Arguments
+
+
+
+    }
+    public void onListReservaFragmentInteraction(Prestamo p){
 
 
     }

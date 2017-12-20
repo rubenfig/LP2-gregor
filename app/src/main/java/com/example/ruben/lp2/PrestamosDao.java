@@ -1,28 +1,37 @@
 package com.example.ruben.lp2;
 
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.Query;
-
-import java.util.List;
-
-/**
- * Created by ruben on 05/12/17.
- */
-@Dao
-public interface PrestamosDao {
-
-    @Query("SELECT * FROM prestamo")
-    public List<Prestamo> findAll();
-
-    @Query("SELECT * FROM prestamo WHERE id = (:query)")
-    public List<Prestamo> getByFilter(String query);
+import java.util.ArrayList;
 
 
-    @Insert
-    void insert(Prestamo users);
+public class PrestamosDao {
+    private ArrayList<Prestamo> prestamos;
 
-    @Delete
-    void delete(Prestamo user);
+    public PrestamosDao() {
+        cargarPrestamos();
+
+    }
+    public void agregar(Prestamo p){
+        this.prestamos.add(p);
+    }
+
+    private void cargarPrestamos(){
+        prestamos = new ArrayList<>();
+
+    }
+
+    public ArrayList<Prestamo> findAll(){
+        return this.prestamos;
+    }
+
+
+    public ArrayList<Prestamo> getByFilter(String query) {
+        ArrayList<Prestamo> prestamos2 = new ArrayList<>();
+        cargarPrestamos();
+        for (int i=0;i< this.prestamos.size();i++){
+            if (this.prestamos.get(i).getIdPrestamo().toString().contains(query)){
+                prestamos2.add(this.prestamos.get(i));
+            }
+        }
+        return prestamos2;
+    }
 }

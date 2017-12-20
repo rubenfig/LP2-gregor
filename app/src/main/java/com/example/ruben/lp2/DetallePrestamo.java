@@ -1,22 +1,14 @@
 package com.example.ruben.lp2;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Embedded;
-
 import java.util.Date;
 
-/**
- * Created by ruben on 05/12/17.
- */
+
 
 public class DetallePrestamo {
 
     int codPrestamo;
-    @Embedded
     Libro producto;
-    @ColumnInfo(name = "fecha_entrega")
     Date fechaEntrega;
-    @ColumnInfo(name = "dias")
     int cantDias;
 
 

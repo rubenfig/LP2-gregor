@@ -1,8 +1,6 @@
 package com.example.ruben.lp2;
 
-/**
- * Created by ruben on 05/12/17.
- */
+
 
 public class Alumno
 {

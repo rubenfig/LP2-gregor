@@ -2,9 +2,7 @@ package com.example.ruben.lp2;
 
 import java.util.ArrayList;
 
-/**
- * Created by ruben on 05/12/17.
- */
+
 
 public class LibroDao {
     private ArrayList<Libro> libros;
